@@ -1,0 +1,11 @@
+docker-compose up -d
+docker ps
+ollama serve
+ollama run gemma:2b
+cd backend
+source RAG/bin/activate
+python -m ingest
+uvicorn main:app --reload
+cd frontend
+npm install
+npm run dev

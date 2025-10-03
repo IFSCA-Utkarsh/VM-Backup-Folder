@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pymilvus
+langchain-huggingface
+langchain-milvus
+langchain-community
+PyPDF2
+python-dotenv
+PyJWT

@@ -1,0 +1,406 @@
+INFO:     Will watch for changes in these directories: ['/home/rag/Desktop/App/backend']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [675580] using WatchFiles
+/home/rag/Desktop/App/backend/app/chat.py:13: LangChainDeprecationWarning: The class `Ollama` was deprecated in LangChain 0.3.1 and will be removed in 1.0.0. An updated version of the class exists in the :class:`~langchain-ollama package and should be used instead. To use it run `pip install -U :class:`~langchain-ollama` and import as `from :class:`~langchain_ollama import OllamaLLM``.
+  llm = Ollama(model="gemma:2b", temperature=0)
+INFO:     Started server process [675582]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:39326 - "POST /login HTTP/1.1" 200 OK
+2025-09-19 10:24:03,358 [ERROR][handler]: RPC error: [create_index], <MilvusException: (code=65535, message=cannot create index on non-exist field: vector)>, <Time:{'RPC start': '2025-09-19 10:24:03.356323', 'RPC error': '2025-09-19 10:24:03.358587'}> (decorators.py:140)
+Failed to create an index on collection: rag_docs
+INFO:     127.0.0.1:45874 - "POST /api/chat HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/starlette/routing.py", line 78, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/starlette/routing.py", line 75, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 213, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rag/Desktop/App/backend/app/chat.py", line 36, in chat_endpoint
+    vs = get_vectorstore()
+         ^^^^^^^^^^^^^^^^^
+  File "/home/rag/Desktop/App/backend/app/vectorstore.py", line 23, in get_vectorstore
+    _vectorstore = Milvus(
+                   ^^^^^^^
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/langchain_milvus/vectorstores/milvus.py", line 419, in __init__
+    self._init(
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/langchain_milvus/vectorstores/milvus.py", line 705, in _init
+    self._create_index()
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/langchain_milvus/vectorstores/milvus.py", line 1031, in _create_index
+    raise e
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/langchain_milvus/vectorstores/milvus.py", line 1015, in _create_index
+    self.col.create_index(
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/pymilvus/orm/collection.py", line 1386, in create_index
+    return conn.create_index(self._name, field_name, index_params, timeout=timeout, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/pymilvus/decorators.py", line 141, in handler
+    raise e from e
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/pymilvus/decorators.py", line 137, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/pymilvus/decorators.py", line 173, in handler
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/pymilvus/decorators.py", line 116, in handler
+    raise e from e
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/pymilvus/decorators.py", line 86, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/pymilvus/client/grpc_handler.py", line 1141, in create_index
+    check_status(status)
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/pymilvus/client/utils.py", line 65, in check_status
+    raise MilvusException(status.code, status.reason, status.error_code)
+pymilvus.exceptions.MilvusException: <MilvusException: (code=65535, message=cannot create index on non-exist field: vector)>
+WARNING:  WatchFiles detected changes in 'app/database.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [675582]
+/home/rag/Desktop/App/backend/app/chat.py:13: LangChainDeprecationWarning: The class `Ollama` was deprecated in LangChain 0.3.1 and will be removed in 1.0.0. An updated version of the class exists in the :class:`~langchain-ollama package and should be used instead. To use it run `pip install -U :class:`~langchain-ollama` and import as `from :class:`~langchain_ollama import OllamaLLM``.
+  llm = Ollama(model="gemma:2b", temperature=0)
+INFO:     Started server process [678639]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in '.venv/lib/python3.12/site-packages/PyPDF2/generic/_fit.py', '.venv/lib/python3.12/site-packages/PyPDF2/_security.py', '.venv/lib/python3.12/site-packages/PyPDF2/_version.py', '.venv/lib/python3.12/site-packages/PyPDF2/papersizes.py', '.venv/lib/python3.12/site-packages/PyPDF2/_writer.py', '.venv/lib/python3.12/site-packages/PyPDF2/_codecs/__init__.py', '.venv/lib/python3.12/site-packages/PyPDF2/generic/__init__.py', '.venv/lib/python3.12/site-packages/PyPDF2/xmp.py', '.venv/lib/python3.12/site-packages/PyPDF2/constants.py', '.venv/lib/python3.12/site-packages/PyPDF2/_codecs/adobe_glyphs.py', '.venv/lib/python3.12/site-packages/PyPDF2/_cmap.py', '.venv/lib/python3.12/site-packages/PyPDF2/pagerange.py', '.venv/lib/python3.12/site-packages/PyPDF2/_page.py', '.venv/lib/python3.12/site-packages/PyPDF2/_codecs/pdfdoc.py', '.venv/lib/python3.12/site-packages/PyPDF2/errors.py', '.venv/lib/python3.12/site-packages/PyPDF2/generic/_annotations.py', '.venv/lib/python3.12/site-packages/PyPDF2/types.py', '.venv/lib/python3.12/site-packages/PyPDF2/filters.py', '.venv/lib/python3.12/site-packages/PyPDF2/_codecs/std.py', '.venv/lib/python3.12/site-packages/PyPDF2/_utils.py', '.venv/lib/python3.12/site-packages/PyPDF2/generic/_rectangle.py', '.venv/lib/python3.12/site-packages/PyPDF2/_codecs/zapfding.py', '.venv/lib/python3.12/site-packages/PyPDF2/generic/_base.py', '.venv/lib/python3.12/site-packages/PyPDF2/__init__.py', '.venv/lib/python3.12/site-packages/PyPDF2/generic/_utils.py', '.venv/lib/python3.12/site-packages/PyPDF2/generic/_data_structures.py', '.venv/lib/python3.12/site-packages/PyPDF2/_encryption.py', '.venv/lib/python3.12/site-packages/PyPDF2/_protocols.py', '.venv/lib/python3.12/site-packages/PyPDF2/_reader.py', '.venv/lib/python3.12/site-packages/PyPDF2/_codecs/symbol.py', '.venv/lib/python3.12/site-packages/PyPDF2/generic/_outline.py', '.venv/lib/python3.12/site-packages/PyPDF2/_merger.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [678639]
+/home/rag/Desktop/App/backend/app/chat.py:13: LangChainDeprecationWarning: The class `Ollama` was deprecated in LangChain 0.3.1 and will be removed in 1.0.0. An updated version of the class exists in the :class:`~langchain-ollama package and should be used instead. To use it run `pip install -U :class:`~langchain-ollama` and import as `from :class:`~langchain_ollama import OllamaLLM``.
+  llm = Ollama(model="gemma:2b", temperature=0)
+INFO:     Started server process [679218]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/ingest.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [679218]
+WARNING:  WatchFiles detected changes in 'app/ingest.py'. Reloading...
+/home/rag/Desktop/App/backend/app/chat.py:13: LangChainDeprecationWarning: The class `Ollama` was deprecated in LangChain 0.3.1 and will be removed in 1.0.0. An updated version of the class exists in the :class:`~langchain-ollama package and should be used instead. To use it run `pip install -U :class:`~langchain-ollama` and import as `from :class:`~langchain_ollama import OllamaLLM``.
+  llm = Ollama(model="gemma:2b", temperature=0)
+INFO:     Started server process [680774]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+/home/rag/Desktop/App/backend/app/chat.py:13: LangChainDeprecationWarning: The class `Ollama` was deprecated in LangChain 0.3.1 and will be removed in 1.0.0. An updated version of the class exists in the :class:`~langchain-ollama package and should be used instead. To use it run `pip install -U :class:`~langchain-ollama` and import as `from :class:`~langchain_ollama import OllamaLLM``.
+  llm = Ollama(model="gemma:2b", temperature=0)
+INFO:     Started server process [680893]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/config.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [680893]
+Process SpawnProcess-6:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/uvicorn/config.py", line 436, in load
+    self.loaded_app = import_from_string(self.app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/rag/Desktop/App/backend/app/main.py", line 3, in <module>
+    from app import auth
+  File "/home/rag/Desktop/App/backend/app/auth.py", line 7, in <module>
+    from app.config import settings
+  File "/home/rag/Desktop/App/backend/app/config.py", line 20, in <module>
+    settings = Settings()
+               ^^^^^^^^^^
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/pydantic_settings/main.py", line 188, in __init__
+    super().__init__(
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/pydantic/main.py", line 253, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 10 validation errors for Settings
+milvus_collection
+  Extra inputs are not permitted [type=extra_forbidden, input_value='rag_docs', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+dim
+  Extra inputs are not permitted [type=extra_forbidden, input_value='384', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+embed_model
+  Extra inputs are not permitted [type=extra_forbidden, input_value='sentence-transformers/all-MiniLM-L6-v2', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+llm_model
+  Extra inputs are not permitted [type=extra_forbidden, input_value='gemma:2b', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+jwt_secret
+  Extra inputs are not permitted [type=extra_forbidden, input_value='supersecretkey_replace_this', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+jwt_expire_min
+  Extra inputs are not permitted [type=extra_forbidden, input_value='60', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+rag_data_dir
+  Extra inputs are not permitted [type=extra_forbidden, input_value='RAGData', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+chunk_size
+  Extra inputs are not permitted [type=extra_forbidden, input_value='1500', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+chunk_overlap
+  Extra inputs are not permitted [type=extra_forbidden, input_value='200', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+top_k
+  Extra inputs are not permitted [type=extra_forbidden, input_value='3', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+WARNING:  WatchFiles detected changes in 'app/config.py'. Reloading...
+/home/rag/Desktop/App/backend/app/chat.py:13: LangChainDeprecationWarning: The class `Ollama` was deprecated in LangChain 0.3.1 and will be removed in 1.0.0. An updated version of the class exists in the :class:`~langchain-ollama package and should be used instead. To use it run `pip install -U :class:`~langchain-ollama` and import as `from :class:`~langchain_ollama import OllamaLLM``.
+  llm = Ollama(model="gemma:2b", temperature=0)
+INFO:     Started server process [681316]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/config.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [681316]
+/home/rag/Desktop/App/backend/app/chat.py:13: LangChainDeprecationWarning: The class `Ollama` was deprecated in LangChain 0.3.1 and will be removed in 1.0.0. An updated version of the class exists in the :class:`~langchain-ollama package and should be used instead. To use it run `pip install -U :class:`~langchain-ollama` and import as `from :class:`~langchain_ollama import OllamaLLM``.
+  llm = Ollama(model="gemma:2b", temperature=0)
+INFO:     Started server process [681452]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/config.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [681452]
+Process SpawnProcess-9:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/uvicorn/config.py", line 436, in load
+    self.loaded_app = import_from_string(self.app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/rag/Desktop/App/backend/app/main.py", line 3, in <module>
+    from app import auth
+  File "/home/rag/Desktop/App/backend/app/auth.py", line 7, in <module>
+    from app.config import settings
+  File "/home/rag/Desktop/App/backend/app/config.py", line 35, in <module>
+    settings = Settings()
+               ^^^^^^^^^^
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/pydantic_settings/main.py", line 188, in __init__
+    super().__init__(
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/pydantic/main.py", line 253, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 10 validation errors for Settings
+milvus_collection
+  Extra inputs are not permitted [type=extra_forbidden, input_value='rag_docs', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+dim
+  Extra inputs are not permitted [type=extra_forbidden, input_value='384', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+embed_model
+  Extra inputs are not permitted [type=extra_forbidden, input_value='sentence-transformers/all-MiniLM-L6-v2', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+llm_model
+  Extra inputs are not permitted [type=extra_forbidden, input_value='gemma:2b', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+jwt_secret
+  Extra inputs are not permitted [type=extra_forbidden, input_value='supersecretkey_replace_this', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+jwt_expire_min
+  Extra inputs are not permitted [type=extra_forbidden, input_value='60', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+rag_data_dir
+  Extra inputs are not permitted [type=extra_forbidden, input_value='RAGData', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+chunk_size
+  Extra inputs are not permitted [type=extra_forbidden, input_value='1500', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+chunk_overlap
+  Extra inputs are not permitted [type=extra_forbidden, input_value='200', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+top_k
+  Extra inputs are not permitted [type=extra_forbidden, input_value='3', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+WARNING:  WatchFiles detected changes in 'app/config.py'. Reloading...
+Process SpawnProcess-10:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/uvicorn/config.py", line 436, in load
+    self.loaded_app = import_from_string(self.app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/rag/Desktop/App/backend/app/main.py", line 3, in <module>
+    from app import auth
+  File "/home/rag/Desktop/App/backend/app/auth.py", line 7, in <module>
+    from app.config import settings
+  File "/home/rag/Desktop/App/backend/app/config.py", line 42, in <module>
+    settings = Settings()
+               ^^^^^^^^^^
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/pydantic_settings/main.py", line 188, in __init__
+    super().__init__(
+  File "/home/rag/Desktop/App/backend/.venv/lib/python3.12/site-packages/pydantic/main.py", line 253, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 5 validation errors for Settings
+milvus_collection
+  Extra inputs are not permitted [type=extra_forbidden, input_value='rag_docs', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+embed_model
+  Extra inputs are not permitted [type=extra_forbidden, input_value='sentence-transformers/all-MiniLM-L6-v2', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+jwt_secret
+  Extra inputs are not permitted [type=extra_forbidden, input_value='supersecretkey_replace_this', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+jwt_expire_min
+  Extra inputs are not permitted [type=extra_forbidden, input_value='60', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+rag_data_dir
+  Extra inputs are not permitted [type=extra_forbidden, input_value='RAGData', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden
+WARNING:  WatchFiles detected changes in 'app/config.py'. Reloading...
+/home/rag/Desktop/App/backend/app/chat.py:13: LangChainDeprecationWarning: The class `Ollama` was deprecated in LangChain 0.3.1 and will be removed in 1.0.0. An updated version of the class exists in the :class:`~langchain-ollama package and should be used instead. To use it run `pip install -U :class:`~langchain-ollama` and import as `from :class:`~langchain_ollama import OllamaLLM``.
+  llm = Ollama(model="gemma:2b", temperature=0)
+INFO:     Started server process [683772]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/ingest.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [683772]
+/home/rag/Desktop/App/backend/app/chat.py:13: LangChainDeprecationWarning: The class `Ollama` was deprecated in LangChain 0.3.1 and will be removed in 1.0.0. An updated version of the class exists in the :class:`~langchain-ollama package and should be used instead. To use it run `pip install -U :class:`~langchain-ollama` and import as `from :class:`~langchain_ollama import OllamaLLM``.
+  llm = Ollama(model="gemma:2b", temperature=0)
+INFO:     Started server process [684634]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in '.venv/lib/python3.12/site-packages/pypdf/_encryption.py', '.venv/lib/python3.12/site-packages/pypdf/_version.py', '.venv/lib/python3.12/site-packages/pypdf/_text_extraction/__init__.py', '.venv/lib/python3.12/site-packages/pypdf/_text_extraction/_text_extractor.py', '.venv/lib/python3.12/site-packages/pypdf/_xobj_image_helpers.py', '.venv/lib/python3.12/site-packages/pypdf/_crypt_providers/_pycryptodome.py', '.venv/lib/python3.12/site-packages/pypdf/_utils.py', '.venv/lib/python3.12/site-packages/pypdf/generic/_viewerpref.py', '.venv/lib/python3.12/site-packages/pypdf/_codecs/pdfdoc.py', '.venv/lib/python3.12/site-packages/pypdf/papersizes.py', '.venv/lib/python3.12/site-packages/pypdf/generic/_data_structures.py', '.venv/lib/python3.12/site-packages/pypdf/_page.py', '.venv/lib/python3.12/site-packages/pypdf/annotations/_non_markup_annotations.py', '.venv/lib/python3.12/site-packages/pypdf/_page_labels.py', '.venv/lib/python3.12/site-packages/pypdf/types.py', '.venv/lib/python3.12/site-packages/pypdf/generic/_utils.py', '.venv/lib/python3.12/site-packages/pypdf/_codecs/zapfding.py', '.venv/lib/python3.12/site-packages/pypdf/_codecs/_codecs.py', '.venv/lib/python3.12/site-packages/pypdf/_crypt_providers/_fallback.py', '.venv/lib/python3.12/site-packages/pypdf/_doc_common.py', '.venv/lib/python3.12/site-packages/pypdf/generic/_base.py', '.venv/lib/python3.12/site-packages/pypdf/annotations/__init__.py', '.venv/lib/python3.12/site-packages/pypdf/annotations/_base.py', '.venv/lib/python3.12/site-packages/pypdf/_text_extraction/_layout_mode/__init__.py', '.venv/lib/python3.12/site-packages/pypdf/_reader.py', '.venv/lib/python3.12/site-packages/pypdf/constants.py', '.venv/lib/python3.12/site-packages/pypdf/errors.py', '.venv/lib/python3.12/site-packages/pypdf/generic/_outline.py', '.venv/lib/python3.12/site-packages/pypdf/_codecs/adobe_glyphs.py', '.venv/lib/python3.12/site-packages/pypdf/generic/_fit.py', '.venv/lib/python3.12/site-packages/pypdf/_text_extraction/_layout_mode/_fixed_width_page.py', '.venv/lib/python3.12/site-packages/pypdf/_protocols.py', '.venv/lib/python3.12/site-packages/pypdf/_crypt_providers/__init__.py', '.venv/lib/python3.12/site-packages/pypdf/_codecs/symbol.py', '.venv/lib/python3.12/site-packages/pypdf/_text_extraction/_layout_mode/_font.py', '.venv/lib/python3.12/site-packages/pypdf/pagerange.py', '.venv/lib/python3.12/site-packages/pypdf/generic/_files.py', '.venv/lib/python3.12/site-packages/pypdf/generic/__init__.py', '.venv/lib/python3.12/site-packages/pypdf/_text_extraction/_layout_mode/_text_state_params.py', '.venv/lib/python3.12/site-packages/pypdf/_text_extraction/_layout_mode/_font_widths.py', '.venv/lib/python3.12/site-packages/pypdf/_codecs/std.py', '.venv/lib/python3.12/site-packages/pypdf/annotations/_markup_annotations.py', '.venv/lib/python3.12/site-packages/pypdf/_writer.py', '.venv/lib/python3.12/site-packages/pypdf/__init__.py', '.venv/lib/python3.12/site-packages/pypdf/_cmap.py', '.venv/lib/python3.12/site-packages/pypdf/generic/_rectangle.py', '.venv/lib/python3.12/site-packages/pypdf/_crypt_providers/_cryptography.py', '.venv/lib/python3.12/site-packages/pypdf/generic/_link.py', '.venv/lib/python3.12/site-packages/pypdf/_text_extraction/_layout_mode/_text_state_manager.py', '.venv/lib/python3.12/site-packages/pypdf/_crypt_providers/_base.py', '.venv/lib/python3.12/site-packages/pypdf/generic/_image_inline.py', '.venv/lib/python3.12/site-packages/pypdf/filters.py', '.venv/lib/python3.12/site-packages/pypdf/xmp.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [684634]
+/home/rag/Desktop/App/backend/app/chat.py:13: LangChainDeprecationWarning: The class `Ollama` was deprecated in LangChain 0.3.1 and will be removed in 1.0.0. An updated version of the class exists in the :class:`~langchain-ollama package and should be used instead. To use it run `pip install -U :class:`~langchain-ollama` and import as `from :class:`~langchain_ollama import OllamaLLM``.
+  llm = Ollama(model="gemma:2b", temperature=0)
+INFO:     Started server process [684944]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
